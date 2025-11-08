@@ -58,3 +58,26 @@
   */
   animation: fall-and-fade 2s forwards ease-out;
 }
+
+/* Animacion show */
+  @keyframes fade-in-top {0% { transform: translateY(-50px); opacity: 0; } 100% { transform: translateY(0); opacity: 1;} }
+
+.fade-in-top-normal { 
+    animation: fade-in-top 1.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0s 1 normal both; 
+}
+
+
+/* Animacion fade desde la derecha */
+  @keyframes fade-in-right {0% { transform: translateX(50px); opacity: 0; } 100% { transform: translateX(0); opacity: 1;} }
+
+.fade-in-right-normal { 
+    animation: fade-in-right 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0s 1 normal both; 
+}
+
+/* Animacion fade desde la izquierda */
+
+  @keyframes fade-in-left {0% { transform: translateX(-50px); opacity: 0; } 100% { transform: translateX(0); opacity: 1;} }
+
+.fade-in-left-normal { 
+    animation: fade-in-left 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0s 1 normal both; 
+}

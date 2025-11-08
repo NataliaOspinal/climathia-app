@@ -1,4 +1,5 @@
 import React from 'react';
+import { useInView } from 'react-intersection-observer';
 
 // Array para los datos, así no repetimos código
 const objectivesData = [
@@ -17,9 +18,18 @@ const objectivesData = [
 ];
 
 const ObjectivesSection = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: false, // La animación ocurre varias veces
+    threshold: 0.1,    // Se activa cuando el 10% del elemento es visible
+  });  
   return (
+    
     // Sección con fondo verde
-    <section className="bg-green py-20 px-4">
+    <section ref={ref} // Conecta el observador a esta sección
+      className={`
+        bg-green py-20 px-4 
+        ${inView ? 'fade-in-top-normal' : 'opacity-0'}
+      `}>
       <div className="container mx-auto max-w-6xl">
         
         {/* 2. Título principal */}
