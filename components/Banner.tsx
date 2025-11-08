@@ -20,7 +20,7 @@ const Banner = () => {
         
         {/* Imagen */}
         <img 
-          src="src/assets/images/airquality.png" 
+          src="/images/airquality.png" 
           alt="Monitor de calidad de aire"
           className="
             max-h-40          /* Imagen más pequeña en móvil */
@@ -39,7 +39,7 @@ const Banner = () => {
             font-medium text-white tracking-wide
           "
         >
-          Monitorea el aire que <span className='bg-gradient-to-l from-blue-500 via-teal-500 to-green-500 text-transparent bg-clip-text'> respiras</span>
+          Monitorea el aire que <span className='bg-linear-to-l from-blue-500 via-teal-500 to-green-500 text-transparent bg-clip-text'> respiras</span>
         </h1>
 
       </div>

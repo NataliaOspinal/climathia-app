@@ -23,7 +23,7 @@ const SobreSection = () => {
         {/* --- Columna de Imagen --- */}
         <div className="md:w-1/2">
           <img 
-            src="src/assets/images/imgsobre.png"
+            src="/images/imgsobre.png"
             alt="Ilustración de personas cuidando el planeta"
             className="w-full max-w-md mx-auto" // Controla el tamaño de la imagen
           />

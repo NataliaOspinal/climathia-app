@@ -90,11 +90,11 @@ const AccordionSection = () => {
   return (
     <section 
       ref={ref}
-      className={`bg-gris-fondo py-20 px-4 ${inView ? 'fade-in-top-normal' : 'opacity-0'}`}
+      className={`py-20 px-4 ${inView ? 'fade-in-top-normal' : 'opacity-0'}`}
     >
       <div className="container mx-auto max-w-3xl">
 
-        <h2 className="text-4xl font-bold text-center text-verde-principal mb-12">
+        <h2 className="text-4xl font-bold text-center text-black mb-12">
           Sobre RACiMo
         </h2>
 
