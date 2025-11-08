@@ -81,3 +81,21 @@
 .fade-in-left-normal { 
     animation: fade-in-left 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0s 1 normal both; 
 }
+
+/* src/index.css */
+
+/* Animación para el carrusel */
+@keyframes fade-in-simple {
+  0% {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fade-in-simple {
+  animation: fade-in-simple 0.4s ease-out both;
+}

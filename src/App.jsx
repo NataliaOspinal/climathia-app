@@ -1,28 +1,37 @@
-import React from "react";
-import Header from "../components/Header";
-import Banner from "../components/Banner";
-import SobreSection from "../components/SobreSection";
-import LeafCursor from "../components/LeafCursor";
-import ObjetivoSection from "../components/ObjetivoSection.jsx";
-import AccordionSection from "../components/AccordionSection.jsx";
-import VariablesSection from "../components/VariablesSection.jsx";
-import Footer from "../components/Footer.jsx";
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 
-const App = () =>{
+// 2. Importa tus componentes de "layout"
+import Header from './components/Header';
+import Footer from './components/Footer';
+import LeafCursor from './components/LeafCursor';
+
+// 3. Importa tus NUEVAS páginas
+import HomePage from './pages/HomePage';
+import DatosPage from './pages/DatosPage';
+
+// ...existing code...
+
+const App = () => {
   return (
     <>
-    <div>
       <LeafCursor />
-        <Header />
-        <Banner />
-        <SobreSection />
-        <ObjetivoSection />
-        <AccordionSection />
-        <VariablesSection />
-        <Footer />
-    </div>
+      <Header />
+      
+      {/* 4. Aquí ocurre la magia */}
+      <Routes>
+        {/* Ruta para la página de inicio */}
+        <Route path="/" element={<HomePage />} />
+        
+        {/* Ruta para la página de datos */}
+        <Route path="/datos" element={<DatosPage />} />
+        
+        {/* (Puedes añadir más rutas aquí) */}
+      </Routes>
+      
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
