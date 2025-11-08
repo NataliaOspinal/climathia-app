@@ -15,3 +15,46 @@
     
   }
 }
+
+
+@keyframes pulsate-fwd-normal {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.pulsate-fwd-normal:hover { 
+   animation: pulsate-fwd-normal 1.5s ease 0s infinite normal none; 
+}
+
+@keyframes fall-and-fade {
+  0% {
+    /* Empieza en el cursor */
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    /* Termina 100px más abajo, rotado y transparente */
+    transform: translate(15px, 100px) rotate(30deg);
+    opacity: 0;
+  }
+}
+
+/* 3. Definimos el estilo de la hoja */
+.leaf {
+  /* ¡Importante! Fijo en la pantalla */
+  position: fixed; 
+  
+  /* Para que no puedas hacerle clic */
+  pointer-events: none; 
+  
+  /* Puedes usar un emoji */
+  font-size: 1.5rem; /* 24px */
+
+  /* ¡Aquí conectamos la animación! */
+  /* 'fall-and-fade' = nombre de la animación
+     '2s' = duración de 2 segundos
+     'forwards' = se queda en el estado final (opacity: 0)
+  */
+  animation: fall-and-fade 2s forwards ease-out;
+}

@@ -26,6 +26,7 @@ const Banner = () => {
             max-h-40          /* Imagen más pequeña en móvil */
             md:max-h-60       /* tamaño original para desktop */
             mb-6 md:mb-0      /* Espacio solo en móvil (debajo de la img) */
+            pulsate-fwd-normal  /* Animación de vibrar */
           "
         />
         
@@ -38,7 +39,7 @@ const Banner = () => {
             font-medium text-white tracking-wide
           "
         >
-          Monitorea el aire que respiras
+          Monitorea el aire que <span className='bg-gradient-to-l from-blue-500 via-teal-500 to-green-500 text-transparent bg-clip-text'> respiras</span>
         </h1>
 
       </div>
