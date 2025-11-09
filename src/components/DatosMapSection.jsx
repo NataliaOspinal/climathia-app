@@ -553,8 +553,13 @@ const DatosMapSection = () => {
           {/* --- 3. BOTÓN "EXPLÍCAME" (Con funcionalidad) --- */}
           <div className="mt-12 flex justify-center">
             <button 
-              // onClick={() => setShowExplain(!showExplain)} // <-- Sin acción
-              className="bg-green text-white font-semibold text-lg py-3 px-6 rounded-lg shadow-md hover:bg-green/90 cursor-pointer transition-colors"
+              onClick={handleExplainData}
+              disabled={isExplaining || !selectedStationObject || graphData.length === 0}
+              className={`font-semibold text-lg py-3 px-6 rounded-lg shadow-md transition-colors ${
+                isExplaining || !selectedStationObject || graphData.length === 0
+                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  : 'bg-green text-white hover:bg-green/90 cursor-pointer'
+              }`}
             >
               {isExplaining ? (
                 <div className="flex items-center">
