@@ -382,36 +382,36 @@ class ChatbotService {
     // Pregunta específica según la opción seleccionada
     switch (parseInt(optionNumber)) {
       case 1:
-        question += `🔍 **ANÁLISIS SOLICITADO:**\n`;
-        question += `Por favor, evalúa estos datos y explica qué indican sobre la calidad del aire y las condiciones meteorológicas actuales. `;
-        question += `Incluye una interpretación técnica de cada variable y su significado para la salud pública.`;
+        question += `🔍 **ANÁLISIS SOLICITADO (RESPUESTA BREVE):**\n`;
+        question += `Evalúa estos datos: ¿Qué indican sobre calidad del aire y condiciones meteorológicas? `;
+        question += `Interpretación técnica concisa de cada variable y su impacto en salud pública.`;
         break;
         
       case 2:
-        question += `📈 **ANÁLISIS SOLICITADO:**\n`;
-        question += `Identifica y analiza cualquier patrón o tendencia preocupante en estos datos. `;
-        question += `¿Hay valores que sugieran problemas ambientales o de salud? ¿Qué factores podrían estar causando estos patrones?`;
+        question += `📈 **ANÁLISIS SOLICITADO (RESPUESTA BREVE):**\n`;
+        question += `Identifica patrones preocupantes en estos datos. `;
+        question += `¿Hay valores problemáticos? ¿Qué los causa? Respuesta directa y concisa.`;
         break;
         
       case 3:
-        question += `💡 **ANÁLISIS SOLICITADO:**\n`;
-        question += `Basándote en estos datos específicos, proporciona recomendaciones prácticas y específicas. `;
-        question += `Incluye consejos para la población, autoridades ambientales y acciones preventivas recomendadas.`;
+        question += `💡 **ANÁLISIS SOLICITADO (RESPUESTA BREVE):**\n`;
+        question += `Recomendaciones prácticas basadas en estos datos específicos. `;
+        question += `Consejos concisos para población y autoridades. Máximo 3 puntos clave.`;
         break;
         
       case 4:
-        question += `📊 **ANÁLISIS SOLICITADO:**\n`;
-        question += `Compara estos valores con los estándares nacionales e internacionales de calidad del aire. `;
-        question += `¿Están dentro de los límites seguros? ¿Cómo se clasificarían según las escalas de la OMS y EPA?`;
+        question += `📊 **ANÁLISIS SOLICITADO (RESPUESTA BREVE):**\n`;
+        question += `Compara con estándares OMS/EPA. `;
+        question += `¿Están en límites seguros? Clasificación directa y concisa.`;
         break;
         
       case 5:
-        question += `🌟 **ANÁLISIS COMPLETO SOLICITADO:**\n`;
-        question += `Proporciona un análisis integral que incluya:\n`;
-        question += `1. Evaluación de calidad del aire y condiciones meteorológicas\n`;
-        question += `2. Identificación de patrones y tendencias preocupantes\n`;
-        question += `3. Recomendaciones específicas basadas en los datos\n`;
-        question += `4. Comparación con estándares de calidad del aire`;
+        question += `🌟 **ANÁLISIS COMPLETO (RESPUESTA RESUMIDA):**\n`;
+        question += `Análisis integral CONCISO que incluya:\n`;
+        question += `1. Estado de calidad del aire (2-3 líneas)\n`;
+        question += `2. Patrones relevantes (2-3 líneas)\n`;
+        question += `3. Recomendaciones clave (2-3 líneas)\n`;
+        question += `4. Comparación con estándares (2-3 líneas)`;
         break;
         
       default:
