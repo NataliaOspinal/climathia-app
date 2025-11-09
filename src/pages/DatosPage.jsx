@@ -4,6 +4,7 @@ import { Search } from 'lucide-react'; // Importa el ícono
 import DatosBusqueda from '../components/DatosBusqueda';
 import DatosAnalisis from '../components/DatosAnalisis';
 import DatosMapSection from '../components/DatosMapSection';
+import ClimaBot from '../components/ClimaBot';
 
 const DatosPage = () => {
   return (
@@ -11,6 +12,7 @@ const DatosPage = () => {
         <DatosBusqueda />
         <DatosAnalisis />
         <DatosMapSection />
+        <ClimaBot />
     </main>
     
   );
