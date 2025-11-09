@@ -25,8 +25,6 @@ https://youtu.be/s-nEq7f-RbQ?si=VKrlYZjPpaIBvtes
 - Navegación simple y responsiva con Tailwind.
 - Acceso directo al Dashboard Ambiental externo (Google Apps Script).
 
-## Video disponible
-https://youtu.be/s-nEq7f-RbQ?si=VKrlYZjPpaIBvtes
 
 ## 🛠️ Tecnologías
 - React 19 y Vite 5
