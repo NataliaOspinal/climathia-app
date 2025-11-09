@@ -129,9 +129,8 @@ Si deseas licenciar contenidos (imágenes/medios) bajo **Creative Commons** adem
 - Si usas **CC0** (Dominio Público), puedes omitir la atribución, pero se recomienda citar la fuente cuando sea posible.
 
 ### Créditos de imágenes
-- Las imágenes usadas en el proyecto (carpeta `public/images/`) fueron creadas por **Vivian Rivas**.
-- Licencia recomendada: **CC BY 4.0** (https://creativecommons.org/licenses/by/4.0/).
-- Ejemplo de atribución: `"Logotipo Climathia" por Vivian Rivas, disponible en public/images/logoheader.png, bajo licencia CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).`
+- Las imágenes usadas en el proyecto (carpeta `public/images/`) se publican bajo **CC0 (Dominio Público)**: https://creativecommons.org/publicdomain/zero/1.0/
+- Atribución opcional (por cortesía): `"Logotipo Climathia" por Vivian Rivas, disponible en public/images/logoheader.png, liberado bajo CC0 (https://creativecommons.org/publicdomain/zero/1.0/).`
 
 ## 🙌 Créditos
 - Climathia — proyecto de visualización ambiental.
