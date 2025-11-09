@@ -13,6 +13,9 @@
 
 </div>
 
+### 📺 Demostración del Proyecto
+[Ver el Video de Demostración del Proyecto Climathia](https://youtu.be/s-nEq7f-RbQ?si=VKrlYZjPpaIBvtes)
+
 ## 📖 Descripción
 Climathia integra componentes de mapas y visualización con una experiencia ligera en React + Vite. El proyecto incluye páginas de inicio y datos, además de un enlace directo a un Dashboard Ambiental construido en Google Apps Script.
 
