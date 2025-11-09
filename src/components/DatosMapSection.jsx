@@ -315,6 +315,7 @@ const DatosMapSection = () => {
               {/* --- GRÁFICOS (Sin cambios) --- */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 
+                
                 <div className="bg-white p-4 rounded-lg shadow col-span-1 sm:col-span-2">
                   <h4 className="text-lg font-semibold text-gray-700 mb-2">PM vs. Hora</h4>
                   {graphData.length > 0 ? ( <PmScatterChart data={graphData} /> ) : ( <div className="h-[250px] flex items-center justify-center text-gray-500">No hay datos de PM para mostrar en esta fecha.</div> )}
