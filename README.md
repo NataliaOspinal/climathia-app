@@ -15,7 +15,7 @@
 
 ## 📖 Descripción
 Climathia integra componentes de mapas y visualización con una experiencia ligera en React + Vite. El proyecto incluye páginas de inicio y datos, además de un enlace directo a un Dashboard Ambiental construido en Google Apps Script.
-##❤️ Youtube - Video OFICIAL 
+## ❤️ Youtube - Video OFICIAL 
 https://youtu.be/s-nEq7f-RbQ?si=VKrlYZjPpaIBvtes
 
 ## ✨ Características Principales
