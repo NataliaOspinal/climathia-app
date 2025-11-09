@@ -10,8 +10,6 @@ import LeafCursor from './components/LeafCursor';
 import HomePage from './pages/HomePage';
 import DatosPage from './pages/DatosPage';
 
-// ...existing code...
-
 const App = () => {
   return (
     <>

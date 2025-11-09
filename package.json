@@ -13,10 +13,14 @@
     "@headlessui/react": "^2.2.9",
     "@lottiefiles/dotlottie-react": "^0.17.7",
     "@tailwindcss/vite": "^4.1.17",
+    "date-fns": "^4.1.0",
+    "leaflet": "^1.9.4",
     "lucide-react": "^0.553.0",
     "react": "^19.1.1",
+    "react-datepicker": "^8.8.0",
     "react-dom": "^19.1.1",
     "react-intersection-observer": "^10.0.0",
+    "react-leaflet": "^5.0.0",
     "react-router-dom": "^7.9.5"
   },
   "devDependencies": {
