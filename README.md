@@ -23,6 +23,9 @@ Climathia integra componentes de mapas y visualización con una experiencia lige
 - Navegación simple y responsiva con Tailwind.
 - Acceso directo al Dashboard Ambiental externo (Google Apps Script).
 
+## Video disponible
+https://youtu.be/s-nEq7f-RbQ?si=VKrlYZjPpaIBvtes
+
 ## 🛠️ Tecnologías
 - React 19 y Vite 5
 - Tailwind CSS 4 (`@tailwindcss/vite`)
