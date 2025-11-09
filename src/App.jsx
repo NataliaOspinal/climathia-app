@@ -24,6 +24,8 @@ const App = () => {
         {/* Ruta para la página de datos */}
         <Route path="/datos" element={<DatosPage />} />
         
+        {/* Ruta del Dashboard Ambiental eliminada: se accede mediante enlace externo en el Header */}
+        
         {/* (Puedes añadir más rutas aquí) */}
       </Routes>
       
