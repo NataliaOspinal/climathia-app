@@ -1,13 +1,16 @@
-// components/DatosBusqueda.jsx
+import React from "react";
 
-import React from 'react';
-import { Search } from 'lucide-react'; // Importa el ícono
-
-// Renombramos la función a "DatosBusqueda"
 const DatosBusqueda = () => {
+  // Función que realiza el scroll hacia la sección indicada
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
-    //  Cambiamos <main> por <div>, ya que no es la página principal
-    <div 
+    <div
       className="
         flex flex-col items-center 
         w-full 
@@ -16,9 +19,8 @@ const DatosBusqueda = () => {
         min-h-[60vh]
       "
     >
-      
       {/* Título */}
-      <h1 
+      <h1
         className="
           text-4xl md:text-5xl font-bold 
           text-green 
@@ -26,47 +28,49 @@ const DatosBusqueda = () => {
           text-center
         "
       >
-        Análisis de datos a mano
+        Análisis de datos
       </h1>
 
-      {/* Contenedor de la barra de búsqueda (relativo) */}
-      <div 
-        className="
-          relative w-full max-w-xl 
-          flex items-center
-        "
-      >
-        
-        {/* Input de búsqueda */}
-        <input 
-          type="text" 
-          placeholder="Busca por ubicación"
+      {/* Botones de navegación */}
+      <div className="flex flex-wrap justify-center gap-6">
+        <button
+          onClick={() => scrollToSection("DataMapSection")}
           className="
-            w-full 
-            py-4 pl-6 pr-12 
-            text-lg text-gray-700 
-            bg-white 
-            rounded-full 
-            shadow-md 
-            focus:outline-none 
-            focus:ring-2 focus:ring-verde-principal
+            bg-green text-white font-semibold
+            py-3 px-6 rounded-full
+            shadow-md hover:bg-green-700
+            transition-all duration-300
           "
-        />
-        
-        {/* Ícono (Absoluto) */}
-        <Search 
-          className="
-            absolute right-5 
-            top-1/2 -translate-y-1/2 
-            h-6 w-6 
-            text-gray-500
-          " 
-        />
-      </div>
+        >
+          Airlinks
+        </button>
 
+        <button
+          onClick={() => scrollToSection("DataSection2")}
+          className="
+            bg-blue-500 text-white font-semibold
+            py-3 px-6 rounded-full
+            shadow-md hover:bg-blue-600
+            transition-all duration-300
+          "
+        >
+          Vue+Air
+        </button>
+
+        <button
+          onClick={() => scrollToSection("DataSection3")}
+          className="
+            bg-purple-500 text-white font-semibold
+            py-3 px-6 rounded-full
+            shadow-md hover:bg-purple-600
+            transition-all duration-300
+          "
+        >
+          PRO
+        </button>
+      </div>
     </div>
   );
 };
 
-// Exportamos "DatosBusqueda"
 export default DatosBusqueda;

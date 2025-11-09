@@ -162,7 +162,7 @@ const DataSection2 = () => {
   }, [selectedVueStationId, selectedDate]);
 
   return (
-    <section className="bg-cyan-100 py-20 px-4">
+    <section className="bg-cyan-100 py-20 px-4" id="DataSection2">
       <div className="container mx-auto max-w-7xl">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* --- COLUMNA IZQUIERDA --- */}

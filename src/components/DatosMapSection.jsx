@@ -114,58 +114,6 @@ const IcaLineChart = ({ data }) => {
   );
 };
 
-// === Temperatura ===
-const TemperatureLineChart = ({ data }) => (
-  <ResponsiveContainer width="100%" height={160}>
-    <LineChart data={data} margin={{ top: 5, right: 20, left: 10, bottom: 5 }}>
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="timestamp" tickFormatter={(tick) => formatXAxis(tick).split(':')[0] + 'h'} type="number" domain={['dataMin', 'dataMax']} />
-      <YAxis unit="°C" />
-      <Tooltip labelFormatter={(l) => new Date(l).toLocaleTimeString()} formatter={(v) => [`${v.toFixed(1)}°C`, "Temperatura"]} />
-      <Line type="monotone" dataKey="temp" stroke="#e74c3c" strokeWidth={2} dot={false} />
-    </LineChart>
-  </ResponsiveContainer>
-);
-
-// === Presión Atmosférica ===
-const PressureLineChart = ({ data }) => (
-  <ResponsiveContainer width="100%" height={160}>
-    <LineChart data={data} margin={{ top: 5, right: 20, left: 10, bottom: 5 }}>
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="timestamp" tickFormatter={(tick) => formatXAxis(tick).split(':')[0] + 'h'} type="number" domain={['dataMin', 'dataMax']} />
-      <YAxis unit="hPa" />
-      <Tooltip labelFormatter={(l) => new Date(l).toLocaleTimeString()} formatter={(v) => [`${v.toFixed(1)} hPa`, "Presión"]} />
-      <Line type="monotone" dataKey="presion" stroke="#9b59b6" strokeWidth={2} dot={false} />
-    </LineChart>
-  </ResponsiveContainer>
-);
-
-// === Velocidad del viento ===
-const WindSpeedChart = ({ data }) => (
-  <ResponsiveContainer width="100%" height={160}>
-    <LineChart data={data} margin={{ top: 5, right: 20, left: 10, bottom: 5 }}>
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="timestamp" tickFormatter={(tick) => formatXAxis(tick).split(':')[0] + 'h'} type="number" domain={['dataMin', 'dataMax']} />
-      <YAxis unit="m/s" />
-      <Tooltip labelFormatter={(l) => new Date(l).toLocaleTimeString()} formatter={(v) => [`${v.toFixed(1)} m/s`, "Velocidad viento"]} />
-      <Line type="monotone" dataKey="vel_viento" stroke="#16a085" strokeWidth={2} dot={false} />
-    </LineChart>
-  </ResponsiveContainer>
-);
-
-// === Dirección del viento ===
-const WindDirectionChart = ({ data }) => (
-  <ResponsiveContainer width="100%" height={160}>
-    <LineChart data={data} margin={{ top: 5, right: 20, left: 10, bottom: 5 }}>
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="timestamp" tickFormatter={(tick) => formatXAxis(tick).split(':')[0] + 'h'} type="number" domain={['dataMin', 'dataMax']} />
-      <YAxis domain={[0, 360]} unit="°" />
-      <Tooltip labelFormatter={(l) => new Date(l).toLocaleTimeString()} formatter={(v) => [`${v.toFixed(0)}°`, "Dirección viento"]} />
-      <Line type="monotone" dataKey="dir_viento" stroke="#2980b9" strokeWidth={2} dot={false} />
-    </LineChart>
-  </ResponsiveContainer>
-);
-
 // --- FUNCIÓN PARA INDEXAR EL CSV (Sin cambios) ---
 const processAndIndexCsv = (rows) => {
   const index = {};
@@ -252,6 +200,7 @@ const DatosMapSection = () => {
     // Usamos React.Fragment para tener múltiples secciones
     <>
       <section 
+        id="DataMapSection"
         ref={ref} 
         className={`bg-gris-fondo py-20 px-4 ${inView ? 'fade-in-top-normal' : 'opacity-0'}`}
       >
@@ -347,9 +296,6 @@ const DatosMapSection = () => {
 
         </div>
       </section>
-
-      {/* --- 4. NUEVA SECCIÓN (Renderizado permanente) --- */}
-      <DataSection2 selectedDate={selectedDate} />
     </>
   );
 };
