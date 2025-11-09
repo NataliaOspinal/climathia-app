@@ -124,9 +124,14 @@ Si deseas licenciar contenidos (imágenes/medios) bajo **Creative Commons** adem
 
 ### Atribución de medios (Creative Commons)
 - Elementos mínimos de atribución: título del recurso, autor, fuente/enlace al recurso, nombre y enlace de la licencia.
-- Plantilla recomendada (CC BY 4.0): `"[Título del recurso]" por [Autor], disponible en [URL del recurso], bajo licencia [CC BY 4.0] ([https://creativecommons.org/licenses/by/4.0/]).`
+- Plantilla recomendada (CC BY 4.0): `"[Título del recurso]" por [Autor], disponible en [URL del recurso], bajo licencia CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).`
 - Ejemplo (imagen): `"Mapa de estaciones 2024" por Climathia, disponible en https://tu-dominio/imagen.png, bajo licencia CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).`
 - Si usas **CC0** (Dominio Público), puedes omitir la atribución, pero se recomienda citar la fuente cuando sea posible.
+
+### Créditos de imágenes
+- Las imágenes usadas en el proyecto (carpeta `public/images/`) fueron creadas por **Vivian Rivas**.
+- Licencia recomendada: **CC BY 4.0** (https://creativecommons.org/licenses/by/4.0/).
+- Ejemplo de atribución: `"Logotipo Climathia" por Vivian Rivas, disponible en public/images/logoheader.png, bajo licencia CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).`
 
 ## 🙌 Créditos
 - Climathia — proyecto de visualización ambiental.
