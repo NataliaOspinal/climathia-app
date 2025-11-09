@@ -12,6 +12,7 @@ function ClimaBot() {
     messages,
     isTyping,
     sendMessage: sendChatMessage,
+    addMessage,
     clearMessages
   } = useChatbot();
 
@@ -26,6 +27,75 @@ function ClimaBot() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
+
+  // Escuchar evento personalizado para abrir ClimaBot con pregunta contextual
+  useEffect(() => {
+    const handleOpenClimaBot = async (event) => {
+      const { question, context, autoSend, useGemini } = event.detail;
+      
+      console.log('🤖 ClimaBot recibió evento:', { question, context, autoSend, useGemini });
+      
+      // Abrir el chat si no está abierto
+      if (!isOpen) {
+        setIsOpen(true);
+      }
+      
+      // Si autoSend es true, enviar la pregunta automáticamente
+      if (autoSend && question) {
+        // Esperar un poco para que el chat se abra completamente
+        setTimeout(async () => {
+          try {
+            if (useGemini) {
+              // Usar Gemini para análisis avanzado
+              console.log('🧠 Enviando pregunta a Gemini...');
+              
+              // Agregar mensaje del usuario
+              addMessage({
+                text: "🧠 Analiza estos datos con IA avanzada",
+                sender: 'user'
+              });
+              
+              try {
+                const response = await chatbotService.explainWithGemini(question);
+                
+                // Agregar respuesta de Gemini
+                addMessage({
+                  text: response.data?.response || response.data?.message || response.message || 'Error obteniendo respuesta de Gemini',
+                  sender: 'bot',
+                  model: 'gemini-pro'
+                });
+                
+                console.log('✅ Respuesta de Gemini agregada al chat');
+              } catch (error) {
+                console.error('❌ Error con Gemini:', error);
+                addMessage({
+                  text: 'Error obteniendo respuesta de Gemini. Inténtalo de nuevo.',
+                  sender: 'bot',
+                  error: true
+                });
+              }
+              
+            } else {
+              // Usar chatbot normal
+              await sendChatMessage(question, chatbotService);
+            }
+            console.log('✅ Pregunta contextual enviada automáticamente');
+          } catch (error) {
+            console.error('❌ Error enviando pregunta contextual:', error);
+          }
+        }, 500);
+      } else if (question) {
+        // Solo establecer la pregunta en el input
+        setInput(question);
+      }
+    };
+
+    window.addEventListener('openClimaBot', handleOpenClimaBot);
+    
+    return () => {
+      window.removeEventListener('openClimaBot', handleOpenClimaBot);
+    };
+  }, [isOpen, sendChatMessage, addMessage]);
 
   // ✅ Verificar conexión y enviar saludo inicial
   useEffect(() => {
@@ -263,14 +333,24 @@ function ClimaBot() {
               key={m.id}
               className={`max-w-[80%] px-3 py-2 rounded-xl shadow ${
                 m.sender === "bot"
-                  ? "bg-gray-100 text-gray-800 self-start"
+                  ? m.model === "gemini-pro" 
+                    ? "bg-gradient-to-r from-blue-100 to-purple-100 text-gray-800 self-start border border-blue-200"
+                    : "bg-gray-100 text-gray-800 self-start"
                   : "bg-emerald-100 text-emerald-900 self-end ml-auto"
               } ${m.error ? "bg-red-100 text-red-800" : ""}`}
             >
+              {m.model === "gemini-pro" && m.sender === "bot" && (
+                <div className="flex items-center gap-1 mb-2 text-xs text-blue-700 font-medium">
+                  🧠 <span>Gemini IA</span>
+                </div>
+              )}
               <pre className="whitespace-pre-wrap font-sans text-sm">{m.text}</pre>
               {m.timestamp && (
-                <div className="text-xs opacity-60 mt-1">
-                  {new Date(m.timestamp).toLocaleTimeString()}
+                <div className="text-xs opacity-60 mt-1 flex items-center justify-between">
+                  <span>{new Date(m.timestamp).toLocaleTimeString()}</span>
+                  {m.model === "gemini-pro" && (
+                    <span className="text-blue-600 font-medium">Gemini</span>
+                  )}
                 </div>
               )}
             </div>
