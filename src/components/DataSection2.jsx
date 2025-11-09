@@ -162,7 +162,7 @@ const DataSection2 = () => {
   }, [selectedVueStationId, selectedDate]);
 
   return (
-    <section className="bg-cyan-100 py-20 px-4" id="DataSection2">
+    <section className="bg-lime-200 py-20 px-4" id="DataSection2">
       <div className="container mx-auto max-w-7xl">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* --- COLUMNA IZQUIERDA --- */}
@@ -205,7 +205,7 @@ const DataSection2 = () => {
             </div>
 
             <div className="mt-8 flex justify-center">
-              <button className="bg-lime-200 text-gray-800 font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-lime-300 transition-colors">
+              <button className="bg-lime-300 text-gray-800 font-semibold cursor-pointer py-3 px-6 rounded-lg shadow-md hover:bg-green-500/30 transition-colors">
                 Explícame
               </button>
             </div>
@@ -222,8 +222,8 @@ const DataSection2 = () => {
                     onClick={() => setSelectedVueStationId(station.station_id)}
                     className={`w-full text-left transition-all duration-200 block rounded-lg p-4 ${
                       isSelected
-                        ? "bg-teal-100 text-teal-900 shadow-md"
-                        : "bg-transparent hover:bg-gray-50 border-b border-gray-400 text-gray-800"
+                        ? "bg-green-500/30 text-teal-900 shadow-md cursor-pointer"
+                        : "bg-transparent hover:bg-green-500/10 border-b border-gray-400 text-gray-800 cursor-pointer"
                     }`}
                   >
                     <h4 className="text-xl font-bold mb-1">

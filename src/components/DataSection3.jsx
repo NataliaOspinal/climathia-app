@@ -154,7 +154,7 @@ const DataSection3 = () => {
 
         {/* --- BOTÓN EXPLÍCAME --- */}
         <div className="mt-10 flex justify-center">
-          <button className="bg-lime-200 text-gray-800 font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-lime-300 transition-colors">
+          <button className="bg-lime-200 text-gray-800 cursor-pointer font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-lime-300 transition-colors">
             Explícame
           </button>
         </div>

@@ -257,7 +257,7 @@ const DatosMapSection = () => {
                   minDate={minDate}
                   locale="es"
                   dateFormat="dd/MM/yyyy"
-                  className="bg-gray-200 text-gray-700 p-2 rounded-lg text-center font-medium w-full sm:w-auto"
+                  className="bg-gray-200 text-gray-700 p-2 rounded-lg text-center font-medium w-full sm:w-auto cursor-pointer"
                 />
               </div>
               
@@ -288,7 +288,7 @@ const DatosMapSection = () => {
           <div className="mt-12 flex justify-center">
             <button 
               // onClick={() => setShowExplain(!showExplain)} // <-- Sin acción
-              className="bg-white text-gray-800 font-semibold text-lg py-3 px-6 rounded-lg shadow-md hover:bg-gray-100 transition-colors"
+              className="bg-green text-white font-semibold text-lg py-3 px-6 rounded-lg shadow-md hover:bg-green/90 cursor-pointer transition-colors"
             >
               Explícame
             </button>
