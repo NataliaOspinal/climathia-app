@@ -92,7 +92,14 @@ Para actualizar el enlace, cambiar la constante `DASHBOARD_URL` en ambos archivo
 - Evita commitear `dist/` y archivos generados.
 
 ## Licencia
-Consulta el archivo `LICENSE` del repositorio.
+Este proyecto está licenciado bajo **MIT** (licencia permisiva).
+- Permite usar, copiar, modificar y distribuir el código.
+- Requiere mantener el aviso de copyright y el texto de la licencia.
+- Se proporciona “tal cual”, sin garantías.
+
+Consulta el archivo `LICENSE` para el texto completo.
+
+Si deseas licenciar contenidos (imágenes/medios) bajo **Creative Commons** además del código MIT, indícame la variante (por ejemplo, `CC BY 4.0`) y lo añadimos al README.
 
 ## Créditos
 - Climathia — proyecto de visualización ambiental.
