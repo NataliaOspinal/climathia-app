@@ -1,8 +1,29 @@
-# Climathia
+# 🌿 Climathia — Plataforma de Visualización Ambiental
 
-Aplicación web para visualización y análisis ambiental construida con React + Vite y Tailwind CSS. Integra un panel externo de Google Apps Script para el "Dashboard Ambiental" y secciones propias para búsqueda, mapas y análisis.
+<div align="center">
 
-## Tecnologías
+![Climathia](https://img.shields.io/badge/Climathia-Ambiental-green?style=for-the-badge&logo=leaflet)
+![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)
+![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=for-the-badge&logo=vite)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-4-38B2AC?style=for-the-badge&logo=tailwind-css)
+![Leaflet](https://img.shields.io/badge/Leaflet-Map-199900?style=for-the-badge&logo=leaflet)
+![Recharts](https://img.shields.io/badge/Recharts-Visualizacion-orange?style=for-the-badge)
+
+<em>Una plataforma sencilla y moderna para explorar datos ambientales: mapas interactivos, análisis visual y acceso rápido al Dashboard Ambiental externo.</em>
+
+</div>
+
+## 📖 Descripción
+Climathia integra componentes de mapas y visualización con una experiencia ligera en React + Vite. El proyecto incluye páginas de inicio y datos, además de un enlace directo a un Dashboard Ambiental construido en Google Apps Script.
+
+## ✨ Características Principales
+- Mapas interactivos con Leaflet (estaciones, capas y markers).
+- Secciones de análisis con gráficos usando Recharts.
+- Carga y manejo de datos con Axios y PapaParse.
+- Navegación simple y responsiva con Tailwind.
+- Acceso directo al Dashboard Ambiental externo (Google Apps Script).
+
+## 🛠️ Tecnologías
 - React 19 y Vite 5
 - Tailwind CSS 4 (`@tailwindcss/vite`)
 - Leaflet y React-Leaflet (mapas)
@@ -10,7 +31,7 @@ Aplicación web para visualización y análisis ambiental construida con React +
 - Axios y PapaParse (datos)
 - Headless UI y Lucide (UI/íconos)
 
-## Estructura del proyecto
+## 📁 Estructura del Proyecto
 ```
 climathia-app/
 ├── public/                  # Recursos estáticos (imágenes, CSV)
@@ -25,13 +46,13 @@ climathia-app/
 └── README.md
 ```
 
-## Requisitos
-- Node.js 18 o superior
-- npm 9 o superior
+## 🔧 Requisitos
+- `Node.js` 18 o superior
+- `npm` 9 o superior
 
-## Instalación
+## 🚀 Instalación y Configuración
 1. Clonar el repositorio.
-2. Instalar dependencias de la app:
+2. Instalar dependencias del cliente:
    ```bash
    npm install
    ```
@@ -40,35 +61,35 @@ climathia-app/
    cd server && npm install
    ```
 
-## Scripts disponibles (cliente)
-- `npm run dev`: inicia el servidor de desarrollo de Vite (por defecto en `http://localhost:5173/`). Si el puerto está ocupado, Vite elegirá otro (ej. `5174`).
+## 🚀 Scripts Disponibles (Cliente)
+- `npm run dev`: inicia el servidor de desarrollo de Vite (por defecto en `http://localhost:5173/`; si está ocupado, usa otro puerto como `5174`).
 - `npm run build`: genera el build de producción en `dist/`.
 - `npm run preview`: sirve el build de `dist/` para revisión local.
 - `npm run lint`: ejecuta ESLint.
 
-## Dashboard Ambiental (URL externa)
-- La app enlaza a un panel de Google Apps Script con la constante `DASHBOARD_URL`.
+## 🧭 Dashboard Ambiental (URL externa)
+- La app enlaza a un panel de Google Apps Script mediante la constante `DASHBOARD_URL`.
 - URL actual:
   ```
   https://script.google.com/macros/s/AKfycbwtQiSeAwKY5YBniRyT4d2p39dAzwnJpjaHAmq743fxTim45T7xngon4Dp35Z7GNtzt/exec
   ```
-- Lugares donde se configura:
-  - `src/components/Header.tsx` (botón en el encabezado)
+- Dónde se configura:
+  - `src/components/Header.tsx` (botón del encabezado)
   - `src/pages/DashboardAmbiental.jsx` (página dedicada)
 
-Para actualizar el enlace, cambiar la constante `DASHBOARD_URL` en ambos archivos.
+Para actualizar el enlace, cambia `DASHBOARD_URL` en ambos archivos.
 
-## Rutas principales
+## 🧩 Rutas Principales
 - `HomePage` (`/`): portada.
 - `DatosPage` (`/datos`): secciones de análisis y visualización.
 - `DashboardAmbiental` (`/dashboard` o botón en Header): redirección al panel externo.
 
-## Desarrollo
+## 🧪 Desarrollo
 - Estilos: Tailwind con paleta pastel ambiental (ver `src/components/DatosAnalisis.jsx` y `src/index.css`).
-- Mapas: `MapComponent.jsx` y `DatosMapSection.jsx` usan Leaflet; asegúrate de que los estilos de Leaflet se importen.
+- Mapas: `MapComponent.jsx` y `DatosMapSection.jsx` usan Leaflet; asegúrate de importar los estilos de Leaflet.
 - Gráficos: `ChartsCarousel.jsx` y secciones en `DatosPage.jsx` usan Recharts.
 
-## Construcción y despliegue
+## 📦 Construcción y Despliegue
 1. Construir:
    ```bash
    npm run build
@@ -79,19 +100,19 @@ Para actualizar el enlace, cambiar la constante `DASHBOARD_URL` en ambos archivo
    ```
 3. Desplegar los contenidos de `dist/` en tu hosting preferido.
 
-## Servidor (opcional)
+## 🌐 Servidor (opcional)
 - El directorio `server/` contiene un servidor Express simple (`server.js`).
 - Para ejecutarlo localmente:
   ```bash
   node server/server.js
   ```
 
-## Contribución
+## 🤝 Contribución
 - Usa ramas de feature y Pull Requests hacia `main`.
 - Ejecuta `npm run lint` antes de subir cambios.
 - Evita commitear `dist/` y archivos generados.
 
-## Licencia
+## ⚖️ Licencia
 Este proyecto está licenciado bajo **MIT** (licencia permisiva).
 - Permite usar, copiar, modificar y distribuir el código.
 - Requiere mantener el aviso de copyright y el texto de la licencia.
@@ -107,6 +128,6 @@ Si deseas licenciar contenidos (imágenes/medios) bajo **Creative Commons** adem
 - Ejemplo (imagen): `"Mapa de estaciones 2024" por Climathia, disponible en https://tu-dominio/imagen.png, bajo licencia CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).`
 - Si usas **CC0** (Dominio Público), puedes omitir la atribución, pero se recomienda citar la fuente cuando sea posible.
 
-## Créditos
+## 🙌 Créditos
 - Climathia — proyecto de visualización ambiental.
 
