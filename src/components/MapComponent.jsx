@@ -5,9 +5,11 @@ import { MapContainer, TileLayer, Marker, Popup, Tooltip, useMap } from 'react-l
 import L from 'leaflet'; 
 import iconoLocationURL from './location.png'; // Asumiendo que está en la misma carpeta
 
-// ... (El CSS de Leaflet en main.jsx) ...
+// !! RECORDATORIO VITAL (CSS) !!
+// Asegúrate de que 'import "leaflet/dist/leaflet.css";' esté en tu 'src/main.jsx'
+// --------------------------------------------------------
 
-// --- ICONO PERSONALIZADO (Sin cambios) ---
+// --- ICONO PERSONALIZADO ---
 const customIcon = L.icon({
   iconUrl: iconoLocationURL,
   iconSize: [38, 38],
@@ -15,7 +17,7 @@ const customIcon = L.icon({
   popupAnchor: [0, -38]
 });
 
-// --- 1. FUNCIÓN HELPER: ¿Es hoy? (Sin cambios) ---
+// --- 1. FUNCIÓN HELPER: ¿Es hoy? ---
 function isToday(someDate) {
   if (!someDate) return false;
   const today = new Date();
@@ -24,8 +26,8 @@ function isToday(someDate) {
          someDate.getFullYear() === today.getFullYear();
 }
 
-// --- 2. FUNCIÓN HELPER: Calcular Promedios ---
-// (Esta función toma las filas de un día y calcula el promedio de las columnas)
+// --- FUNCIÓN HELPER: Calcular Promedios ---
+// (Esta función toma las filas de un día y calcula el promedio)
 function calculateAveragesFromRows(rows, columnsToAverage) {
   const sums = {};
   const counts = {};
@@ -36,6 +38,7 @@ function calculateAveragesFromRows(rows, columnsToAverage) {
 
   for (const row of rows) {
     for (const key of columnsToAverage) {
+      // Comprueba si el valor existe y es un número
       if (row[key] !== null && typeof row[key] !== 'undefined' && !isNaN(row[key])) {
         sums[key] += Number(row[key]);
         counts[key]++;
@@ -51,62 +54,48 @@ function calculateAveragesFromRows(rows, columnsToAverage) {
 }
 
 
-// --- 3. FUNCIÓN HELPER: Buscar en CSV (¡ACTUALIZADA CON TUS COLUMNAS!) ---
-function findDataInCsv(date, stationId, allData) {
-  // 1. Establece los límites del día (00:00:00 a 23:59:59)
-  const startOfDay = new Date(date);
-  startOfDay.setHours(0, 0, 0, 0);
-  const endOfDay = new Date(date);
-  endOfDay.setHours(23, 59, 59, 999);
-
-  console.log(`Buscando en CSV por ID: ${stationId} entre ${startOfDay.toISOString()} y ${endOfDay.toISOString()}`);
-
-  // 2. Filtra TODAS las filas que coincidan
-  const rowsForDay = allData.filter(r => {
-    // Parsea el timestamp del CSV
-    const rowDate = new Date(r.timestamp); // <-- USA 'timestamp'
-    
-    return (
-      String(r.station_id).trim() === String(stationId) && // <-- USA 'station_id'
-      rowDate >= startOfDay &&
-      rowDate <= endOfDay
-    );
-  });
+// --- 3. FUNCIÓN HELPER: Buscar en el ÍNDICE (Rápido) ---
+// (Esta función usa el índice pre-calculado para encontrar datos)
+function findDataInIndex(date, stationId, historicDataIndex) {
+  // 1. Formatea la fecha a YYYY-MM-DD
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  const dateString = `${year}-${month}-${day}`;
+  
+  console.log(`Buscando en ÍNDICE para el POPUP por fecha: ${dateString} y ID: ${stationId}`);
+  
+  // 2. Búsqueda instantánea en el índice
+  const rowsForDay = historicDataIndex[String(stationId)]?.[dateString] || [];
 
   if (rowsForDay.length === 0) {
-    console.log("No se encontraron filas en CSV para ese día y estación.");
+    console.log("No se encontraron filas en ÍNDICE para ese día y estación.");
     return null;
   }
 
-  console.log(`Filas encontradas: ${rowsForDay.length}. Calculando promedio...`);
+  console.log(`Filas encontradas (índice): ${rowsForDay.length}. Calculando promedio...`);
 
-  // --- 3. ¡IMPORTANTE! USA TUS NOMBRES DE COLUMNA ---
-  // (Estos son los nombres EXACTOS de tu CSV que queremos promediar)
+  // --- 3. Nombres de columna de tu CSV (¡Asegúrate que coincidan!) ---
   const columnsToAverage = [
-    'ica',
-    'humedad',
-    'pm_1',
-    'pm_2_5',
-    'pm_10'
+    'ica', 'humedad', 'pm_1', 'pm_2_5', 'pm_10'
   ];
   
-  // 4. Calcula los promedios de esas columnas
   const averages = calculateAveragesFromRows(rowsForDay, columnsToAverage);
 
-  // 5. Normaliza los nombres para que el JSX los entienda
+  // 4. Normaliza los nombres para que el JSX los entienda
   return {
-    hum: averages.humedad, // <-- 'humedad' (solo 1)
-    hum_out: null,         // (ya no usamos hum_out)
-    pm_1p0: averages.pm_1,   // <-- 'pm_1'
-    pm_2p5: averages.pm_2_5, // <-- 'pm_2_5'
-    pm_10p0: averages.pm_10,  // <-- 'pm_10'
-    ica: averages.ica,     // <-- 'ica'
-    ts: null // Es un promedio, no tiene timestamp
+    hum: averages.humedad,
+    hum_out: null, // (No lo usamos)
+    pm_1p0: averages.pm_1,
+    pm_2p5: averages.pm_2_5,
+    pm_10p0: averages.pm_10,
+    ica: averages.ica,
+    ts: null // Es un promedio
   };
 }
 
 
-// --- 4. NUEVO HELPER: Componente para manejar NA ---
+// --- 4. HELPER: Componente para manejar NA ---
 function RenderValue({ label, value, unit, decimals = 1 }) {
   const isInvalid = (value === null || typeof value === 'undefined' || isNaN(value));
   return (
@@ -123,8 +112,9 @@ function RenderValue({ label, value, unit, decimals = 1 }) {
 }
 
 
-// --- 5. COMPONENTE DE CONTENIDO (Lógica de API vs CSV sin cambios) ---
-function PopupContent({ stationId, name, selectedDate, historicData }) {
+// --- 5. COMPONENTE DE CONTENIDO (Lógica de API vs CSV) ---
+// (Recibe el índice 'historicDataIndex')
+function PopupContent({ stationId, name, selectedDate, historicDataIndex }) {
   const [stationData, setStationData] = useState(null); 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -135,14 +125,11 @@ function PopupContent({ stationId, name, selectedDate, historicData }) {
       setError(null);
       setStationData(null);
 
-      // --- Lógica de decisión (sin cambios) ---
       if (isToday(selectedDate)) {
-        // A. ES HOY: Llamar a la API para datos ACTUALES
+        // --- A. ES HOY: Llamar a la API para datos ACTUALES ---
         console.log(`[${name}] Fecha es HOY. Llamando a API /current...`);
         try {
           const response = await axios.get(`http://localhost:3001/api/current/${stationId}`);
-          console.log(`[${name}] Respuesta del proxy (actual):`, response.data);
-          
           if (response.data.data) {
             setStationData(response.data.data);
           } else {
@@ -156,16 +143,16 @@ function PopupContent({ stationId, name, selectedDate, historicData }) {
         }
 
       } else {
-        // B. ES FECHA PASADA: Leer del CSV
-        console.log(`[${name}] Fecha es HISTÓRICA. Buscando en CSV...`);
-        if (!historicData || historicData.length === 0) {
-          setError("Datos históricos (CSV) no están cargados.");
+        // --- B. ES FECHA PASADA: Leer del ÍNDICE ---
+        console.log(`[${name}] Fecha es HISTÓRICA. Buscando en ÍNDICE...`);
+        if (!historicDataIndex) { // Comprueba si el índice está listo
+          setError("Datos históricos (Índice) no están cargados.");
           setIsLoading(false);
           return;
         }
         
-        // Llama a nuestra función helper (la que corregimos)
-        const csvData = findDataInCsv(selectedDate, stationId, historicData);
+        // Llama a nuestra función helper (la que usa el índice)
+        const csvData = findDataInIndex(selectedDate, stationId, historicDataIndex);
         
         if (csvData) {
           setStationData(csvData);
@@ -176,9 +163,10 @@ function PopupContent({ stationId, name, selectedDate, historicData }) {
       setIsLoading(false);
     };
     loadData();
-  }, [stationId, name, selectedDate, historicData]);
+    
+  }, [stationId, name, selectedDate, historicDataIndex]); // Dependencia actualizada
 
-  // --- 6. RENDERIZADO DE DATOS (¡SIMPLIFICADO!) ---
+  // --- RENDERIZADO DE DATOS (Simplificado) ---
   return (
     <div>
       <b>{name}</b>
@@ -191,10 +179,7 @@ function PopupContent({ stationId, name, selectedDate, historicData }) {
           <p style={{ margin: 0, fontWeight: 'bold' }}>
             {stationData.ts ? 'Datos Actuales:' : 'Promedio del Día:'}
           </p>
-          
-          {/* Mostramos solo los 5 valores que pediste */}
           <RenderValue label="ICA Promedio" value={stationData.ica} unit="" decimals={1} />
-          {/* Usamos la columna 'hum' (la única que normalizamos) */}
           <RenderValue label="Humedad" value={stationData.hum} unit="%" decimals={1} />
           <RenderValue label="PM1" value={stationData.pm_1p0} unit=" µg/m³" decimals={2} />
           <RenderValue label="PM2.5" value={stationData.pm_2p5} unit=" µg/m³" decimals={2} />
@@ -212,9 +197,8 @@ function PopupContent({ stationId, name, selectedDate, historicData }) {
   );
 }
 
-// --- 7. COMPONENTE MARCADOR (Pasa 'selectedDate' y 'historicData') ---
-// (Sin cambios)
-function AirQualityMarker({ stationId, position, name, icon, selectedDate, historicData }) {
+// --- 6. COMPONENTE MARCADOR (Pasa 'historicDataIndex') ---
+function AirQualityMarker({ stationId, position, name, icon, selectedDate, historicDataIndex }) {
   return (
     <Marker position={position} icon={icon}>
       <Tooltip>{name}</Tooltip>
@@ -223,16 +207,17 @@ function AirQualityMarker({ stationId, position, name, icon, selectedDate, histo
           stationId={stationId} 
           name={name} 
           selectedDate={selectedDate}
-          historicData={historicData}
+          historicDataIndex={historicDataIndex} // <-- Prop actualizado
         />
       </Popup>
     </Marker>
   );
 }
 
-// --- 8. COMPONENTE "ARREGLADOR" DEL MAPA (Sin cambios) ---
+// --- 7. COMPONENTE "ARREGLADOR" DEL MAPA ---
 function MapFix({ bounds }) {
   const map = useMap(); 
+
   useEffect(() => {
     if (bounds) {
       map.fitBounds(bounds);
@@ -242,12 +227,12 @@ function MapFix({ bounds }) {
       return () => clearTimeout(timer);
     }
   }, [map, bounds]); 
+
   return null;
 }
 
-// --- 9. COMPONENTE PRINCIPAL (Pasa 'selectedDate' y 'historicData') ---
-// (Sin cambios)
-const MapComponent = ({ stations, selectedDate, historicData }) => {
+// --- 8. COMPONENTE PRINCIPAL (Exportado) ---
+const MapComponent = ({ stations, selectedDate, historicDataIndex }) => {
   
   let mapBounds = null;
   if (stations && stations.length > 0) {
@@ -260,12 +245,19 @@ const MapComponent = ({ stations, selectedDate, historicData }) => {
   return (
     <div className="lg:w-1/2 bg-lime-100 p-4 rounded-lg shadow-lg relative h-[600px] overflow-hidden">
       
-      <button className="absolute bottom-4 right-4 z-10 bg-verde-principal text-white p-3 rounded-full shadow-lg"><MapPin size={24} /></button>
+      <button className="absolute bottom-4 right-4 z-10 bg-green text-white p-3 rounded-full shadow-lg"><MapPin size={24} /></button>
 
       <MapContainer
         center={[7.13, -73.12]}
         zoom={10}
-        style={{ position: 'absolute', top: 0, left: 0, height: '100%', width: '100%', zIndex: 0 }}
+        style={{ 
+          position: 'absolute', 
+          top: 0, 
+          left: 0, 
+          height: '100%', 
+          width: '100%', 
+          zIndex: 0 
+        }}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -282,7 +274,7 @@ const MapComponent = ({ stations, selectedDate, historicData }) => {
             name={station.station_name} 
             icon={customIcon} 
             selectedDate={selectedDate}
-            historicData={historicData}
+            historicDataIndex={historicDataIndex} // <-- Prop actualizado
           />
         ))}
       </MapContainer>

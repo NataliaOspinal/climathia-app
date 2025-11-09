@@ -3,10 +3,10 @@
 import React from 'react';
 import { Search } from 'lucide-react'; // Importa el ícono
 
-// 1. Renombramos la función a "DatosBusqueda"
+// Renombramos la función a "DatosBusqueda"
 const DatosBusqueda = () => {
   return (
-    // 2. Cambiamos <main> por <div>, ya que no es la página principal
+    //  Cambiamos <main> por <div>, ya que no es la página principal
     <div 
       className="
         flex flex-col items-center 
@@ -26,7 +26,7 @@ const DatosBusqueda = () => {
           text-center
         "
       >
-        Inserte título aquí
+        Análisis de datos a mano
       </h1>
 
       {/* Contenedor de la barra de búsqueda (relativo) */}
@@ -68,5 +68,5 @@ const DatosBusqueda = () => {
   );
 };
 
-// 3. Exportamos "DatosBusqueda"
+// Exportamos "DatosBusqueda"
 export default DatosBusqueda;
