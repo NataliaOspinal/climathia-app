@@ -1,7 +1,7 @@
 import Logo from './Logo';
 import Nav from './Nav';
 
-const DASHBOARD_URL = "https://script.google.com/macros/s/AKfycbw52GW9o0vSR2pCpqQZKS4yccfe8pmUFt2h609pANGeWvpsvh_eMcD0wY3THDzlBATU/exec";
+const DASHBOARD_URL = "https://script.google.com/macros/s/AKfycbwtQiSeAwKY5YBniRyT4d2p39dAzwnJpjaHAmq743fxTim45T7xngon4Dp35Z7GNtzt/exec";
 
 const Header = () => {
 
