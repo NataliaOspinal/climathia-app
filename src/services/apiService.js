@@ -5,7 +5,7 @@
 
 // Configuración base de la API
 const API_CONFIG = {
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000',
+  baseURL: import.meta.env.VITE_API_URL || 'https://backend-climathia.onrender.com',
   timeout: 30000, // 30 segundos
   headers: {
     'Content-Type': 'application/json',
