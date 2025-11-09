@@ -122,7 +122,7 @@ const TemperatureLineChart = ({ data }) => (
       <XAxis dataKey="timestamp" tickFormatter={(tick) => formatXAxis(tick).split(':')[0] + 'h'} type="number" domain={['dataMin', 'dataMax']} />
       <YAxis unit="°C" />
       <Tooltip labelFormatter={(l) => new Date(l).toLocaleTimeString()} formatter={(v) => [`${v.toFixed(1)}°C`, "Temperatura"]} />
-      <Line type="monotone" dataKey="temperatura" stroke="#e74c3c" strokeWidth={2} dot={false} />
+      <Line type="monotone" dataKey="temp" stroke="#e74c3c" strokeWidth={2} dot={false} />
     </LineChart>
   </ResponsiveContainer>
 );

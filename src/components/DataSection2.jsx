@@ -8,6 +8,7 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
+  Legend,
 } from "recharts";
 import { MapPin, Calendar } from "lucide-react";
 
@@ -54,24 +55,10 @@ const TemperatureLineChart = ({ data }) => (
   <ResponsiveContainer width="100%" height={160}>
     <LineChart data={data}>
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis
-        dataKey="timestamp"
-        tickFormatter={formatXAxis}
-        type="number"
-        domain={["dataMin", "dataMax"]}
-      />
+      <XAxis dataKey="timestamp" tickFormatter={formatXAxis} type="number" domain={["dataMin", "dataMax"]} />
       <YAxis unit="°C" />
-      <Tooltip
-        labelFormatter={(l) => new Date(l).toLocaleTimeString()}
-        formatter={(v) => [`${v.toFixed(1)}°C`, "Temperatura"]}
-      />
-      <Line
-        type="monotone"
-        dataKey="temp"
-        stroke="#e74c3c"
-        strokeWidth={2}
-        dot={false}
-      />
+      <Tooltip labelFormatter={(l) => new Date(l).toLocaleTimeString()} formatter={(v) => [`${v.toFixed(1)}°C`, "Temperatura"]} />
+      <Line type="monotone" dataKey="temp" stroke="#e74c3c" strokeWidth={2} dot={false} />
     </LineChart>
   </ResponsiveContainer>
 );
@@ -80,24 +67,10 @@ const PressureLineChart = ({ data }) => (
   <ResponsiveContainer width="100%" height={160}>
     <LineChart data={data}>
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis
-        dataKey="timestamp"
-        tickFormatter={formatXAxis}
-        type="number"
-        domain={["dataMin", "dataMax"]}
-      />
+      <XAxis dataKey="timestamp" tickFormatter={formatXAxis} type="number" domain={["dataMin", "dataMax"]} />
       <YAxis unit="hPa" />
-      <Tooltip
-        labelFormatter={(l) => new Date(l).toLocaleTimeString()}
-        formatter={(v) => [`${v.toFixed(1)} hPa`, "Presión"]}
-      />
-      <Line
-        type="monotone"
-        dataKey="presion"
-        stroke="#9b59b6"
-        strokeWidth={2}
-        dot={false}
-      />
+      <Tooltip labelFormatter={(l) => new Date(l).toLocaleTimeString()} formatter={(v) => [`${v.toFixed(1)} hPa`, "Presión"]} />
+      <Line type="monotone" dataKey="presion" stroke="#9b59b6" strokeWidth={2} dot={false} />
     </LineChart>
   </ResponsiveContainer>
 );
@@ -106,24 +79,10 @@ const WindSpeedChart = ({ data }) => (
   <ResponsiveContainer width="100%" height={160}>
     <LineChart data={data}>
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis
-        dataKey="timestamp"
-        tickFormatter={formatXAxis}
-        type="number"
-        domain={["dataMin", "dataMax"]}
-      />
+      <XAxis dataKey="timestamp" tickFormatter={formatXAxis} type="number" domain={["dataMin", "dataMax"]} />
       <YAxis unit="m/s" />
-      <Tooltip
-        labelFormatter={(l) => new Date(l).toLocaleTimeString()}
-        formatter={(v) => [`${v.toFixed(1)} m/s`, "Velocidad viento"]}
-      />
-      <Line
-        type="monotone"
-        dataKey="viento_vel"
-        stroke="#16a085"
-        strokeWidth={2}
-        dot={false}
-      />
+      <Tooltip labelFormatter={(l) => new Date(l).toLocaleTimeString()} formatter={(v) => [`${v.toFixed(1)} m/s`, "Velocidad viento"]} />
+      <Line type="monotone" dataKey="viento_vel" stroke="#16a085" strokeWidth={2} dot={false} />
     </LineChart>
   </ResponsiveContainer>
 );
@@ -132,50 +91,22 @@ const WindDirectionChart = ({ data }) => (
   <ResponsiveContainer width="100%" height={160}>
     <LineChart data={data}>
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis
-        dataKey="timestamp"
-        tickFormatter={formatXAxis}
-        type="number"
-        domain={["dataMin", "dataMax"]}
-      />
+      <XAxis dataKey="timestamp" tickFormatter={formatXAxis} type="number" domain={["dataMin", "dataMax"]} />
       <YAxis domain={[0, 360]} unit="°" />
-      <Tooltip
-        labelFormatter={(l) => new Date(l).toLocaleTimeString()}
-        formatter={(v) => [`${v.toFixed(0)}°`, "Dirección viento"]}
-      />
-      <Line
-        type="monotone"
-        dataKey="viento_dir"
-        stroke="#2980b9"
-        strokeWidth={2}
-        dot={false}
-      />
+      <Tooltip labelFormatter={(l) => new Date(l).toLocaleTimeString()} formatter={(v) => [`${v.toFixed(0)}°`, "Dirección viento"]} />
+      <Line type="monotone" dataKey="viento_dir" stroke="#2980b9" strokeWidth={2} dot={false} />
     </LineChart>
   </ResponsiveContainer>
 );
 
-const AvgTemperatureChart = ({ data }) => (
+const HumedadChart = ({ data }) => (
   <ResponsiveContainer width="100%" height={160}>
     <LineChart data={data}>
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis
-        dataKey="timestamp"
-        tickFormatter={formatXAxis}
-        type="number"
-        domain={["dataMin", "dataMax"]}
-      />
-      <YAxis unit="°C" />
-      <Tooltip
-        labelFormatter={(l) => new Date(l).toLocaleTimeString()}
-        formatter={(v) => [`${v.toFixed(1)}°C`, "Temp Promedio"]}
-      />
-      <Line
-        type="monotone"
-        dataKey="temp_prom"
-        stroke="#f39c12"
-        strokeWidth={2}
-        dot={false}
-      />
+      <XAxis dataKey="timestamp" tickFormatter={formatXAxis} type="number" domain={["dataMin", "dataMax"]} />
+      <YAxis unit="%" />
+      <Tooltip labelFormatter={(l) => new Date(l).toLocaleTimeString()} formatter={(v) => [`${v.toFixed(1)}%`, "Humedad"]} />
+      <Line type="monotone" dataKey="humedad" stroke="#3B82F6" strokeWidth={2} dot={false} />
     </LineChart>
   </ResponsiveContainer>
 );
@@ -184,33 +115,20 @@ const PMChart = ({ data }) => (
   <ResponsiveContainer width="100%" height={160}>
     <LineChart data={data}>
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis
-        dataKey="timestamp"
-        tickFormatter={formatXAxis}
-        type="number"
-        domain={["dataMin", "dataMax"]}
-      />
+      <XAxis dataKey="timestamp" tickFormatter={formatXAxis} type="number" domain={["dataMin", "dataMax"]} />
       <YAxis unit="µg/m³" />
-      <Tooltip
-        labelFormatter={(l) => new Date(l).toLocaleTimeString()}
-        formatter={(v) => [`${v.toFixed(1)} µg/m³`, "PM"]}
-      />
-      <Line
-        type="monotone"
-        dataKey="pm"
-        stroke="#2ecc71"
-        strokeWidth={2}
-        dot={false}
-      />
+      <Tooltip labelFormatter={(l) => new Date(l).toLocaleTimeString()} />
+      <Legend />
+      <Line type="monotone" dataKey="pm_1" stroke="#34D399" strokeWidth={2} dot={false} name="PM 1" />
+      <Line type="monotone" dataKey="pm_2_5" stroke="#F59E0B" strokeWidth={2} dot={false} name="PM 2.5" />
+      <Line type="monotone" dataKey="pm_10" stroke="#EF4444" strokeWidth={2} dot={false} name="PM 10" />
     </LineChart>
   </ResponsiveContainer>
 );
 
 // === COMPONENTE PRINCIPAL ===
 const DataSection2 = () => {
-  const [selectedVueStationId, setSelectedVueStationId] = useState(
-    vueStations[0].station_id
-  );
+  const [selectedVueStationId, setSelectedVueStationId] = useState(vueStations[0].station_id);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [graphData, setGraphData] = useState([]);
 
@@ -224,8 +142,7 @@ const DataSection2 = () => {
           .filter(
             (row) =>
               parseInt(row.station_id) === selectedVueStationId &&
-              new Date(row.timestamp).toDateString() ===
-                selectedDate.toDateString()
+              new Date(row.timestamp).toDateString() === selectedDate.toDateString()
           )
           .map((row) => ({
             timestamp: new Date(row.timestamp).getTime(),
@@ -233,8 +150,10 @@ const DataSection2 = () => {
             presion: parseFloat(row.presion),
             viento_vel: parseFloat(row.viento_vel),
             viento_dir: parseFloat(row.viento_dir),
-            temp_prom: parseFloat(row.temp_prom),
-            pm: parseFloat(row.pm),
+            humedad: parseFloat(row.humedad),
+            pm_1: parseFloat(row.pm_1) || 0,
+            pm_2_5: parseFloat(row.pm_2_5) || 0,
+            pm_10: parseFloat(row.pm_10) || 0,
           }));
 
         setGraphData(filtered);
@@ -277,8 +196,8 @@ const DataSection2 = () => {
               <ChartCard title="Dir. Viento (°)">
                 <WindDirectionChart data={graphData} />
               </ChartCard>
-              <ChartCard title="Temp. Promedio (°C)">
-                <AvgTemperatureChart data={graphData} />
+              <ChartCard title="Humedad (%)">
+                <HumedadChart data={graphData} />
               </ChartCard>
               <ChartCard title="PM (µg/m³)">
                 <PMChart data={graphData} />
@@ -296,8 +215,7 @@ const DataSection2 = () => {
           <div className="lg:w-1/3 bg-white/50 p-6 rounded-lg shadow-inner">
             <div className="space-y-4">
               {vueStations.map((station, index) => {
-                const isSelected =
-                  station.station_id === selectedVueStationId;
+                const isSelected = station.station_id === selectedVueStationId;
                 return (
                   <button
                     key={station.station_id}
@@ -310,9 +228,7 @@ const DataSection2 = () => {
                   >
                     <h4 className="text-xl font-bold mb-1">
                       Estación {index + 1}:{" "}
-                      <span className="font-semibold">
-                        {station.station_name}
-                      </span>
+                      <span className="font-semibold">{station.station_name}</span>
                     </h4>
                     <div className="flex items-center gap-2 text-gray-600">
                       <MapPin size={16} />
@@ -320,9 +236,7 @@ const DataSection2 = () => {
                         {station.lat}, {station.lon}
                       </span>
                     </div>
-                    <p className="text-sm mt-1 text-gray-600">
-                      {station.tipo_equipo}
-                    </p>
+                    <p className="text-sm mt-1 text-gray-600">{station.tipo_equipo}</p>
                   </button>
                 );
               })}
